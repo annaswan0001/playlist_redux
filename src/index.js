@@ -4,22 +4,24 @@ import * as serviceWorker from './serviceWorker';
 import {createStore} from 'redux'
 import {Provider} from 'react-redux'
 import './index.css';
-import App from './App';
+import App from './App.jsx';
+import combineReducer from './reducers'
 
-const initialState=[]
 
-function playlist (state=initialState, action){
-    switch(action.type){
-        case"ADD_TRACK":{
-            return[...state, action.payload]
+const store = createStore(
+    combineReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  );
+store.dispatch({type:"ADD_TRACK", payload:"hi"})
+store.dispatch({type:"ADD_TRACK", payload:"hello"})
+store.dispatch({type:"ADD_TRACK", payload:"cucu"})
+store.subscribe(
+    ()=>{
+        console.log(store.getState())
+        
         }
-        default:{
-return state
-        }
-    }
-
-}
-const store = createStore(playlist)
+            
+            
+    )
 
 ReactDOM.render(
     <Provider store={store}>
