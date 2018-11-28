@@ -1,17 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
-import {createStore} from 'redux'
+import {createStore,applyMiddleware} from 'redux'
 import {Provider} from 'react-redux'
+import { composeWithDevTools } from 'redux-devtools-extension'
+import thunk from 'redux-thunk'
+import { createLogger } from 'redux-logger'
 import './index.css';
 import App from './App.jsx';
 import combineReducer from './reducers'
 
-
+const middleware = [ thunk ]
+  if (process.env.NODE_ENV !== 'production') {
+    middleware.push(createLogger())
+  }
 const store = createStore(
-    combineReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    combineReducer, composeWithDevTools(applyMiddleware(...middleware))
   );
 
+  
 store.subscribe(
     ()=>{
         console.log(store.getState())
