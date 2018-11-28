@@ -1,4 +1,4 @@
-const initialState = ["Smells like spirit", "Hello world"];
+const initialState = [];
 
 export default function tracks(state = initialState, action) {
   switch (action.type) {

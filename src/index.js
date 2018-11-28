@@ -11,9 +11,7 @@ import combineReducer from './reducers'
 const store = createStore(
     combineReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   );
-store.dispatch({type:"ADD_TRACK", payload:"hi"})
-store.dispatch({type:"ADD_TRACK", payload:"hello"})
-store.dispatch({type:"ADD_TRACK", payload:"cucu"})
+
 store.subscribe(
     ()=>{
         console.log(store.getState())

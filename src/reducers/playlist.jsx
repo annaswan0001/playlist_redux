@@ -1,4 +1,4 @@
-const initialState = ["first playlist", "second playlist"];
+const initialState = [];
 
 export default function playlist (state = initialState, action) {
   switch (action.type) {
